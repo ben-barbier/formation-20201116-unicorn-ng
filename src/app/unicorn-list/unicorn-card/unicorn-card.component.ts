@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { filter } from 'rxjs/operators';
 import { Unicorn } from '../../shared/models/unicorn.model';
+import { EditUnicornDialogComponent } from './edit-unicorn-dialog/edit-unicorn-dialog.component';
 
 @Component({
     selector: 'app-unicorn-card',
@@ -9,10 +12,12 @@ import { Unicorn } from '../../shared/models/unicorn.model';
 export class UnicornCardComponent implements OnInit, OnChanges {
     @Input() public unicorn: Unicorn | undefined;
     @Output() private deleted = new EventEmitter<void>();
+    @Output() private updated = new EventEmitter<Unicorn>();
+
     public age = 0;
     public currentYear = new Date().getFullYear();
 
-    constructor() {
+    constructor(private dialog: MatDialog) {
         // Step 1
         console.log(this.unicorn);
     }
@@ -29,5 +34,25 @@ export class UnicornCardComponent implements OnInit, OnChanges {
 
     public deleteUnicorn(): void {
         this.deleted.emit();
+    }
+
+    public openEditDialog(): void {
+        this.dialog
+            .open(EditUnicornDialogComponent, {
+                data: {
+                    unicorn: this.unicorn,
+                },
+            })
+            .afterClosed()
+            .pipe(filter(e => !!e))
+            .subscribe((formFields: { name: string; birthYear: number }) => {
+                if (this.unicorn) {
+                    this.updated.emit({
+                        ...this.unicorn,
+                        name: formFields.name,
+                        birthyear: formFields.birthYear,
+                    });
+                }
+            });
     }
 }

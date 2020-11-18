@@ -1,9 +1,12 @@
 <h1>Bonne nouvelle, il reste {{ unicorns.length }} licornes à adopter 🚀 !!!</h1>
 
+<button type="button" (click)="refresh()">Recharger</button>
+
 <div class="unicorns-container">
     <app-unicorn-card
         *ngFor="let unicorn of unicorns"
         (deleted)="removeUnicornFromList(unicorn)"
+        (updated)="updateUnicorn($event)"
         [unicorn]="unicorn"
     ></app-unicorn-card>
 </div>

@@ -9,7 +9,8 @@
     Age2: {{ currentYear - (unicorn?.birthyear || 0) }}
     hobbies: {{ unicorn?.hobbies }}
     capacities: {{ unicorn?.capacities }}
-    <img alt="photo" [src]="unicorn?.photo" >
+    <img alt="photo" [src]="unicorn?.photo">
 
-    <button mat-raised-button color="primary" type="button" (click)="deleteUnicorn()">Supprimer</button>
+    <button mat-mini-fab color="primary" type="button" (click)="deleteUnicorn()"><mat-icon>delete</mat-icon></button>
+    <button mat-mini-fab color="primary" type="button" (click)="openEditDialog()"><mat-icon>edit</mat-icon></button>
 </pre>
