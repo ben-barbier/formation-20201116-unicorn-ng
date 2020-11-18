@@ -15,4 +15,8 @@ export class UnicornListComponent {
             this.unicorns = unicorns;
         });
     }
+
+    public removeUnicornFromList(unicornToDelete: Unicorn): void {
+        this.unicorns = this.unicorns.filter(unicorn => unicorn.id !== unicornToDelete.id);
+    }
 }

@@ -1,6 +1,15 @@
 <!-- unicorn-list.component.html -->
 Bonne nouvelle, il reste {{ unicorns.length }} licornes à adopter 🚀 !!!
 
-<app-unicorn-card [unicorn]="unicorns[0]"></app-unicorn-card>
-<app-unicorn-card [unicorn]="unicorns[1]"></app-unicorn-card>
-<app-unicorn-card [unicorn]="unicorns[2]"></app-unicorn-card>
+<!--<app-unicorn-card (deleted)="removeUnicornFromList($event)" [unicorn]="unicorns[0]"></app-unicorn-card>-->
+<!--<app-unicorn-card (deleted)="removeUnicornFromList($event)" [unicorn]="unicorns[1]"></app-unicorn-card>-->
+<!--<app-unicorn-card (deleted)="removeUnicornFromList($event)" [unicorn]="unicorns[2]"></app-unicorn-card>-->
+
+<app-unicorn-card
+    *ngFor="let unicorn of unicorns"
+    (deleted)="removeUnicornFromList(unicorn)"
+    [unicorn]="unicorn"
+></app-unicorn-card>
+
+<!--En dessous, c'est une erreur ! (pas de param)-->
+<!--<app-unicorn-card></app-unicorn-card>-->

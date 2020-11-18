@@ -1,6 +1,15 @@
-<pre>
+<!--    [ngStyle]="{ color: age < 18 ? 'red' : 'blue' }"-->
+<pre class="maClasse" [ngClass]="{ adult: age >= 18 }">
+    Id: {{ unicorn?.id }}
     Name: {{ unicorn?.name }}
+    weight: {{ unicorn?.weight }}
+    Age1: {{ age }}
+    <span *ngIf="age < 60">{{ age }}</span>
+    <span *ngIf="age >= 60">👴</span>
+    Age2: {{ currentYear - (unicorn?.birthyear || 0) }}
+    hobbies: {{ unicorn?.hobbies }}
+    capacities: {{ unicorn?.capacities }}
+    <img alt="photo" [src]="unicorn?.photo" >
 
-    <img alt="photo" [src]="unicorn?.photo">
-
+    <button type="button" (click)="deleteUnicorn()">Supprimer</button>
 </pre>
