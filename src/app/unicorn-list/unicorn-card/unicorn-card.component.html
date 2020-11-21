@@ -1,16 +1,16 @@
-<!--    [ngStyle]="{ color: age < 18 ? 'red' : 'blue' }"-->
-<pre class="maClasse" [ngClass]="{ adult: age >= 18 }">
-    Id: {{ unicorn?.id }}
-    Name: {{ unicorn?.name }}
-    weight: {{ unicorn?.weight }}
-    Age1: {{ age }}
-    <span *ngIf="age < 60">{{ age }}</span>
-    <span *ngIf="age >= 60">👴</span>
-    Age2: {{ currentYear - (unicorn?.birthyear || 0) }}
-    hobbies: {{ unicorn?.hobbies }}
-    capacities: {{ unicorn?.capacities }}
-    <img alt="photo" [src]="unicorn?.photo">
-
-    <button mat-mini-fab color="primary" type="button" (click)="deleteUnicorn()"><mat-icon>delete</mat-icon></button>
-    <button mat-mini-fab color="primary" type="button" (click)="openEditDialog()"><mat-icon>edit</mat-icon></button>
-</pre>
+<div [ngClass]="{ adult: age >= 18 }">
+    <div>
+        <div>Id: {{ unicorn?.id }}</div>
+        <div>Name: {{ unicorn?.name }}</div>
+        <div><img class="photo" alt="photo" [src]="unicorn?.photo" /></div>
+        <div>Weight: {{ unicorn?.weight }}</div>
+        <div>Age: {{ age < 60 ? age : '👴' }}</div>
+        <div>Capacities: {{ unicorn?.capacities }}</div>
+    </div>
+    <div class="unicorns-actions">
+        <button mat-mini-fab color="primary" type="button" (click)="deleteUnicorn()">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" type="button" (click)="openEditDialog()"><mat-icon>edit</mat-icon></button>
+    </div>
+</div>

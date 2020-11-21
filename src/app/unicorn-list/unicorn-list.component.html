@@ -1,6 +1,7 @@
-<h1>Bonne nouvelle, il reste {{ unicorns.length }} licornes à adopter 🚀 !!!</h1>
-
-<button type="button" (click)="refresh()">Recharger</button>
+<h1>
+    Bonne nouvelle, il reste {{ unicorns.length }} licornes à adopter 🚀 !!!
+    <button mat-mini-fab color="primary" type="button" (click)="refresh()"><mat-icon>refresh</mat-icon></button>
+</h1>
 
 <div class="unicorns-container">
     <app-unicorn-card

@@ -15,20 +15,20 @@ export class UnicornCardComponent implements OnInit, OnChanges {
     @Output() private updated = new EventEmitter<Unicorn>();
 
     public age = 0;
-    public currentYear = new Date().getFullYear();
 
     constructor(private dialog: MatDialog) {
-        // Step 1
+        // Step 1 les Inputs ne sont pas renseignés ici
         console.log(this.unicorn);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        // Step 2
-        this.age = new Date().getFullYear() - changes.unicorn?.currentValue?.birthyear;
+        // Step 2 avec mes Inputs de renseignés
+        const currentYear = new Date().getFullYear();
+        this.age = currentYear - changes.unicorn?.currentValue?.birthyear;
     }
 
     ngOnInit(): void {
-        // Step 3 avec mes Inputs de renseignés
+        // Step 3 avec mes Inputs de renseignés aussi
         console.log(this.unicorn);
     }
 
