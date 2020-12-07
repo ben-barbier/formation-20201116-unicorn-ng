@@ -2,6 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { Unicorn } from '../../models/unicorn.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
     selector: 'app-nav',
@@ -9,10 +11,14 @@ import { map, shareReplay } from 'rxjs/operators';
     styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
+    public cart: Unicorn[] = [];
+
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
         map(result => result.matches),
         shareReplay(),
     );
 
-    constructor(private breakpointObserver: BreakpointObserver) {}
+    constructor(private breakpointObserver: BreakpointObserver, cartService: CartService) {
+        cartService.cart.subscribe(newCart => (this.cart = newCart));
+    }
 }

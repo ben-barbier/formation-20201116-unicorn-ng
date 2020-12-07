@@ -1,3 +1,5 @@
+import { Capacity } from './capacity.model';
+
 export interface Unicorn {
     id: number;
     name: string;
@@ -6,4 +8,5 @@ export interface Unicorn {
     photo: string;
     hobbies: string[];
     capacities: number[];
+    capacitiesObj: Capacity[];
 }

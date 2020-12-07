@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { MatDialog } from '@angular/material/dialog';
 import { filter } from 'rxjs/operators';
 import { Unicorn } from '../../shared/models/unicorn.model';
+import { CartService } from '../../shared/services/cart.service';
 import { EditUnicornDialogComponent } from './edit-unicorn-dialog/edit-unicorn-dialog.component';
 
 @Component({
@@ -15,8 +16,9 @@ export class UnicornCardComponent implements OnInit, OnChanges {
     @Output() private updated = new EventEmitter<Unicorn>();
 
     public age = 0;
+    public isInCart = false;
 
-    constructor(private dialog: MatDialog) {
+    constructor(private dialog: MatDialog, private cartService: CartService) {
         // Step 1 les Inputs ne sont pas renseignés ici
         console.log(this.unicorn);
     }
@@ -54,5 +56,16 @@ export class UnicornCardComponent implements OnInit, OnChanges {
                     });
                 }
             });
+    }
+
+    public addToCart(): void {
+        if (this.unicorn) {
+            if (this.cartService.isInCart(this.unicorn)) {
+                this.cartService.removeFromCart(this.unicorn);
+            } else {
+                this.cartService.addToCart(this.unicorn);
+            }
+            this.isInCart = !this.isInCart;
+        }
     }
 }

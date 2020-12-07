@@ -26,7 +26,7 @@ export class UnicornListComponent {
     }
 
     private loadUnicorns(): void {
-        this.unicornsService.getAll().subscribe(unicorns => {
+        this.unicornsService.getAllWithCapacitiesLabels2().subscribe(unicorns => {
             this.unicorns = unicorns;
         });
     }
