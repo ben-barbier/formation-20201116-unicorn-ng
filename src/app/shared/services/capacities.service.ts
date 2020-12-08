@@ -18,7 +18,7 @@ export class CapacitiesService {
         return this.http.get<Capacity[]>(`${environment.apiUrl}/capacities`);
     }
 
-    public create(capacity: Capacity): Observable<Capacity> {
+    public create(capacity: Omit<Capacity, 'id'>): Observable<Capacity> {
         return this.http.post<Capacity>(`${environment.apiUrl}/capacities`, capacity);
     }
 }

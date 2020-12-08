@@ -24,3 +24,12 @@ button.action {
     border: none;
     background-color: transparent;
 }
+
+button.lang-selector {
+    color: white;
+    border: none;
+    background-color: transparent;
+    &:hover {
+        text-decoration: underline;
+    }
+}

@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AddCapacityComponent } from '../../dialogs/add-capacity/add-capacity.component';
@@ -20,11 +21,20 @@ export class NavComponent {
         shareReplay(),
     );
 
-    constructor(private breakpointObserver: BreakpointObserver, cartService: CartService, private dialog: MatDialog) {
+    constructor(
+        private breakpointObserver: BreakpointObserver,
+        cartService: CartService,
+        private dialog: MatDialog,
+        private translateService: TranslateService,
+    ) {
         cartService.cart.subscribe(newCart => (this.cart = newCart));
     }
 
     public addCapacity(): void {
         this.dialog.open(AddCapacityComponent);
+    }
+
+    public useLanguage(lang: string): void {
+        this.translateService.use(lang);
     }
 }
