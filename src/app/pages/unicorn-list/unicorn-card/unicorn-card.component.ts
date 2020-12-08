@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter } from 'rxjs/operators';
-import { Unicorn } from '../../shared/models/unicorn.model';
-import { CartService } from '../../shared/services/cart.service';
+import { Unicorn } from '../../../shared/models/unicorn.model';
+import { CartService } from '../../../shared/services/cart.service';
 import { EditUnicornDialogComponent } from './edit-unicorn-dialog/edit-unicorn-dialog.component';
 
 @Component({
     selector: 'app-unicorn-card',
     templateUrl: './unicorn-card.component.html',
-    styleUrls: ['./unicorn-card.component.scss', '../../shared/styles/unicorns-and-poneys.scss'],
+    styleUrls: ['./unicorn-card.component.scss'],
 })
 export class UnicornCardComponent implements OnInit, OnChanges {
     @Input() public unicorn: Unicorn | undefined;

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Unicorn } from '../../../shared/models/unicorn.model';
+import { Unicorn } from '../../../../shared/models/unicorn.model';
 
 @Component({
     selector: 'app-edit-unicorn-dialog',

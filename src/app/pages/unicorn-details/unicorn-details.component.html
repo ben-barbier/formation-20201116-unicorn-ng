@@ -1,0 +1,7 @@
+<pre>
+    {{ unicorn | json }}
+</pre>
+
+<a [routerLink]="['/unicorn', unicorn?.id - 1]">Previous Unicorn</a>
+<a [routerLink]="['/unicorn', unicorn?.id + 1]">Next Unicorn</a>
+<button type="button" (click)="goNext()">Next Unicorn (test2)</button>

@@ -16,5 +16,8 @@
             <mat-icon>favorite</mat-icon>
         </button>
         <button mat-mini-fab color="primary" type="button" (click)="openEditDialog()"><mat-icon>edit</mat-icon></button>
+        <button mat-mini-fab color="primary" type="button" [routerLink]="['/unicorn', unicorn.id]">
+            <mat-icon>visibility</mat-icon>
+        </button>
     </div>
 </div>

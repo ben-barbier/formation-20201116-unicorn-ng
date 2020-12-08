@@ -16,12 +16,13 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UnicornDetailsComponent } from './pages/unicorn-details/unicorn-details.component';
+import { EditUnicornDialogComponent } from './pages/unicorn-list/unicorn-card/edit-unicorn-dialog/edit-unicorn-dialog.component';
+import { UnicornCardComponent } from './pages/unicorn-list/unicorn-card/unicorn-card.component';
+import { UnicornListComponent } from './pages/unicorn-list/unicorn-list.component';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { AddCapacityComponent } from './shared/dialogs/add-capacity/add-capacity.component';
 import { MagicalNamePipe } from './shared/pipes/magical-name.pipe';
-import { EditUnicornDialogComponent } from './unicorn-list/unicorn-card/edit-unicorn-dialog/edit-unicorn-dialog.component';
-import { UnicornCardComponent } from './unicorn-list/unicorn-card/unicorn-card.component';
-import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
         EditUnicornDialogComponent,
         MagicalNamePipe,
         AddCapacityComponent,
+        UnicornDetailsComponent,
     ],
     imports: [
         BrowserModule,
