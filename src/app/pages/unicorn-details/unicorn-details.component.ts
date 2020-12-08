@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Unicorn } from '../../shared/models/unicorn.model';
 import { UnicornsService } from '../../shared/services/unicorns.service';
@@ -10,11 +11,9 @@ import { UnicornsService } from '../../shared/services/unicorns.service';
     styleUrls: ['./unicorn-details.component.scss'],
 })
 export class UnicornDetailsComponent {
-    public unicorn: Unicorn | undefined;
+    public unicorn$: Observable<Unicorn>;
 
     constructor(route: ActivatedRoute, unicornsService: UnicornsService) {
-        route.params
-            .pipe(switchMap(params => unicornsService.get(params.id)))
-            .subscribe(unicorn => (this.unicorn = unicorn));
+        this.unicorn$ = route.params.pipe(switchMap(params => unicornsService.get(params.id)));
     }
 }

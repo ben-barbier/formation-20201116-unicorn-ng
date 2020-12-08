@@ -61,7 +61,7 @@ export class UnicornsService {
     //     return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
     // }
 
-    public get(id: number): Observable<Unicorn | undefined> {
+    public get(id: number): Observable<Unicorn> {
         // return this.http
         //     .get<Unicorn[]>('http://localhost:3000/unicorns')
         //     .pipe(map(unicorns => unicorns.find(u => u.id === id)));
