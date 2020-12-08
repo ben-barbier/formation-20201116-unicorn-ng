@@ -78,7 +78,7 @@ export class UnicornsService {
         return this.http.delete<void>(`${environment.apiUrl}/unicorns/${unicorn.id}`);
     }
 
-    public create(unicorn: Unicorn): Observable<Unicorn> {
+    public create(unicorn: Omit<Unicorn, 'id'>): Observable<Unicorn> {
         return this.http.post<Unicorn>(`${environment.apiUrl}/unicorns`, unicorn);
     }
 

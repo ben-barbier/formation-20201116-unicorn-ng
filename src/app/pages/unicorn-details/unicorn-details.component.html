@@ -1,4 +1,6 @@
 <section *ngIf="unicorn$ | async as unicorn">
+    <h1>{{ unicorn.name | magicalName }}</h1>
+
     <pre>
         {{ unicorn | json }}
     </pre>

@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0",
-    "build": "ng build",
+    "build:preprod": "npm run lint && ng build --prod",
+    "build:prod": "ng build --prod --base-href /unicorn-ng/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

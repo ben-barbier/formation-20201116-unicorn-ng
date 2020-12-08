@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AddCapacityComponent } from '../../dialogs/add-capacity/add-capacity.component';
 import { Unicorn } from '../../models/unicorn.model';
 import { CartService } from '../../services/cart.service';
+import { AddCapacityDialogComponent } from './add-capacity-dialog/add-capacity-dialog.component';
 
 @Component({
     selector: 'app-nav',
@@ -31,7 +31,7 @@ export class NavComponent {
     }
 
     public addCapacity(): void {
-        this.dialog.open(AddCapacityComponent);
+        this.dialog.open(AddCapacityDialogComponent);
     }
 
     public useLanguage(lang: string): void {

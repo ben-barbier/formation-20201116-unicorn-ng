@@ -1,0 +1,12 @@
+<form (ngSubmit)="addCapacity()" [formGroup]="addCapacityForm">
+    <h1 mat-dialog-title>Add Capacity</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Capacity</mat-label>
+            <input matInput type="text" formControlName="label" />
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="primary" type="submit" [disabled]="addCapacityForm.invalid">Ajouter</button>
+    </div>
+</form>

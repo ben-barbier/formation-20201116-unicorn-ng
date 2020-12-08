@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UnicornDetailsComponent } from './pages/unicorn-details/unicorn-details.component';
-import { UnicornListComponent } from './pages/unicorn-list/unicorn-list.component';
-import { LegalAgeGuard } from './shared/guards/legal-age.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-    { path: 'unicorns', component: UnicornListComponent },
-    { path: 'unicorn/:id', component: UnicornDetailsComponent, canActivate: [LegalAgeGuard] },
+    {
+        path: 'unicorns',
+        loadChildren: () => import('./pages/unicorn-list/unicorn-list.module').then(m => m.UnicornListModule),
+    },
+    {
+        path: 'unicorn',
+        loadChildren: () => import('./pages/unicorn-details/unicorn-details.module').then(m => m.UnicornDetailsModule),
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+        canLoad: [AuthGuard],
+    },
     { path: '**', redirectTo: 'unicorns' },
 ];
 
