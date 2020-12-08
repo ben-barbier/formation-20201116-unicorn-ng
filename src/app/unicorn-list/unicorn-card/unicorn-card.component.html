@@ -1,12 +1,12 @@
-<div [ngClass]="{ adult: age >= 18 }">
+<div [ngClass]="{ adult: age >= 18 }" *ngIf="unicorn">
     <div>
-        <div>Id: {{ unicorn?.id }}</div>
-        <div>Name: {{ unicorn?.name | magicalName }}</div>
-        <div><img class="photo" alt="photo" [src]="unicorn?.photo" /></div>
-        <div>Weight: {{ unicorn?.weight }}</div>
+        <div>Id: {{ unicorn.id }}</div>
+        <div>Name: {{ unicorn.name | magicalName }}</div>
+        <div><img class="photo" alt="photo" [src]="unicorn.photo" /></div>
+        <div>Weight: {{ unicorn.weight }}</div>
         <div>Age: {{ age < 60 ? age : '👴' }}</div>
         <div>Age: {{ isPair(age) }}</div>
-        <div>Capacities: {{ unicorn?.capacities }}</div>
+        <div>Capacities: {{ unicorn.capacities }}</div>
     </div>
     <div class="unicorns-actions">
         <button mat-mini-fab color="primary" type="button" (click)="deleteUnicorn()">
