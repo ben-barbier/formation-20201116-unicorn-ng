@@ -1,7 +1,7 @@
 import { Capacity } from './capacity.model';
 
 export interface Unicorn {
-    id: number;
+    id?: number;
     name: string;
     birthyear: number;
     weight: number;

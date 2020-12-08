@@ -1,7 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,12 +14,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './shared/components/nav/nav.component';
+import { AddCapacityComponent } from './shared/dialogs/add-capacity/add-capacity.component';
+import { MagicalNamePipe } from './shared/pipes/magical-name.pipe';
 import { EditUnicornDialogComponent } from './unicorn-list/unicorn-card/edit-unicorn-dialog/edit-unicorn-dialog.component';
 import { UnicornCardComponent } from './unicorn-list/unicorn-card/unicorn-card.component';
 import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
 
 @NgModule({
-    declarations: [AppComponent, UnicornListComponent, UnicornCardComponent, NavComponent, EditUnicornDialogComponent],
+    declarations: [
+        AppComponent,
+        UnicornListComponent,
+        UnicornCardComponent,
+        NavComponent,
+        EditUnicornDialogComponent,
+        MagicalNamePipe,
+        AddCapacityComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -32,6 +42,7 @@ import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
         MatSidenavModule,
         MatListModule,
         FormsModule,
+        ReactiveFormsModule,
         MatDialogModule,
         MatInputModule,
     ],

@@ -68,4 +68,9 @@ export class UnicornCardComponent implements OnInit, OnChanges {
             this.isInCart = !this.isInCart;
         }
     }
+
+    public isPair(age: number): boolean {
+        console.count('isPair');
+        return age % 2 === 0;
+    }
 }

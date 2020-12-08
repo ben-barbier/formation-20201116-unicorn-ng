@@ -1,10 +1,11 @@
 <div [ngClass]="{ adult: age >= 18 }">
     <div>
         <div>Id: {{ unicorn?.id }}</div>
-        <div>Name: {{ unicorn?.name }}</div>
+        <div>Name: {{ unicorn?.name | magicalName }}</div>
         <div><img class="photo" alt="photo" [src]="unicorn?.photo" /></div>
         <div>Weight: {{ unicorn?.weight }}</div>
         <div>Age: {{ age < 60 ? age : '👴' }}</div>
+        <div>Age: {{ isPair(age) }}</div>
         <div>Capacities: {{ unicorn?.capacities }}</div>
     </div>
     <div class="unicorns-actions">

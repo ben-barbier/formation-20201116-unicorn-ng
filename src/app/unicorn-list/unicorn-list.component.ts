@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Unicorn } from '../shared/models/unicorn.model';
-import { CapacitiesService } from '../shared/services/capacities.service';
 import { UnicornsService } from '../shared/services/unicorns.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { UnicornsService } from '../shared/services/unicorns.service';
 export class UnicornListComponent {
     public unicorns: Unicorn[] = [];
 
-    constructor(private unicornsService: UnicornsService, capacitiesService: CapacitiesService) {
+    constructor(private unicornsService: UnicornsService) {
         this.loadUnicorns();
     }
 

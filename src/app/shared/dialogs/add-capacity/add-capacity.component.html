@@ -1,0 +1,4 @@
+<form (ngSubmit)="addCapacity()" [formGroup]="addCapacityForm">
+    <input type="text" formControlName="label" />
+    <button type="submit" [disabled]="addCapacityForm.invalid">Ajouter</button>
+</form>
