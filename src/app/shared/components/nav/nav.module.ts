@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AddCapacityDialogComponent } from './add-capacity-dialog/add-capacity-dialog.component';
 import { NavComponent } from './nav.component';
@@ -24,6 +25,7 @@ import { NavComponent } from './nav.component';
         MatSidenavModule,
         MatToolbarModule,
         TranslateModule,
+        RouterModule,
 
         // 💡 for addCapacity dialog
         MatDialogModule,
