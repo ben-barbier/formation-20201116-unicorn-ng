@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Unicorn } from '../../shared/models/unicorn.model';
-import { UnicornsService } from '../../shared/services/unicorns.service';
+import { UnicornsDispatchers } from '../../store/services/unicorns.dispatchers';
+import { UnicornsSelectors } from '../../store/services/unicorns.selectors';
 
 @Component({
     selector: 'app-unicorn-list',
@@ -8,33 +10,23 @@ import { UnicornsService } from '../../shared/services/unicorns.service';
     styleUrls: ['./unicorn-list.component.scss'],
 })
 export class UnicornListComponent {
-    public unicorns: Unicorn[] = [];
+    public unicorns$: Observable<Unicorn[]> = this.unicornsSelectors.unicorns$;
 
     trackByUnicornId = (index: number, unicorn: Unicorn): number => unicorn.id;
 
-    constructor(private unicornsService: UnicornsService) {
-        this.loadUnicorns();
+    constructor(private unicornsSelectors: UnicornsSelectors, private unicornsDispatchers: UnicornsDispatchers) {
+        this.unicornsDispatchers.getUnicorns();
     }
 
-    public removeUnicornFromList(unicornToDelete: Unicorn): void {
-        this.unicornsService.delete(unicornToDelete).subscribe(() => {
-            this.unicorns = this.unicorns.filter(unicorn => unicorn.id !== unicornToDelete.id);
-        });
+    public removeUnicornFromList(unicorn: Unicorn): void {
+        this.unicornsDispatchers.deleteUnicorn(unicorn);
     }
 
     public refresh(): void {
-        this.loadUnicorns();
-    }
-
-    private loadUnicorns(): void {
-        this.unicornsService.getAllWithCapacitiesLabels2().subscribe(unicorns => {
-            this.unicorns = unicorns;
-        });
+        this.unicornsDispatchers.getUnicorns();
     }
 
     public updateUnicorn(unicorn: Unicorn): void {
-        this.unicornsService.update(unicorn).subscribe(updatedUnicorn => {
-            this.unicorns = this.unicorns.filter(u => u.id !== unicorn.id).concat(updatedUnicorn);
-        });
+        this.unicornsDispatchers.updateUnicorn(unicorn);
     }
 }

@@ -1,11 +1,11 @@
 <h1>
-    Bonne nouvelle, il reste {{ unicorns.length }} licornes à adopter 🚀 !!!
+    Bonne nouvelle, il reste {{ (unicorns$ | async)?.length }} licornes à adopter 🚀 !!!
     <button mat-mini-fab color="primary" type="button" (click)="refresh()"><mat-icon>refresh</mat-icon></button>
 </h1>
 
 <div class="unicorns-container">
     <app-unicorn-card
-        *ngFor="let unicorn of unicorns; trackBy: trackByUnicornId"
+        *ngFor="let unicorn of unicorns$ | async; trackBy: trackByUnicornId"
         (deleted)="removeUnicornFromList(unicorn)"
         (updated)="updateUnicorn($event)"
         [unicorn]="unicorn"

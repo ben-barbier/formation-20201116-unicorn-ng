@@ -12,12 +12,7 @@
         <button mat-mini-fab color="primary" type="button" (click)="deleteUnicorn()">
             <mat-icon>delete</mat-icon>
         </button>
-        <button
-            mat-mini-fab
-            [color]="(isInCart$ | async) ? 'accent' : 'primary'"
-            type="button"
-            (click)="toggleToCart()"
-        >
+        <button mat-mini-fab [color]="isInCart ? 'accent' : 'primary'" type="button" (click)="toggleToCart(unicorn)">
             <mat-icon>favorite</mat-icon>
         </button>
         <button mat-mini-fab color="primary" type="button" (click)="openEditDialog()"><mat-icon>edit</mat-icon></button>
