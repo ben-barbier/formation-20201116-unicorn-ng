@@ -5,7 +5,7 @@
 
 <div class="unicorns-container">
     <app-unicorn-card
-        *ngFor="let unicorn of unicorns"
+        *ngFor="let unicorn of unicorns; trackBy: trackByUnicornId"
         (deleted)="removeUnicornFromList(unicorn)"
         (updated)="updateUnicorn($event)"
         [unicorn]="unicorn"

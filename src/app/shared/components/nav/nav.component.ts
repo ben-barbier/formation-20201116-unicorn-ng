@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Unicorn } from '../../models/unicorn.model';
-import { CartService } from '../../services/cart.service';
+import { CartSelectors } from '../../../store/services/cart.selectors';
 import { AddCapacityDialogComponent } from './add-capacity-dialog/add-capacity-dialog.component';
 
 @Component({
@@ -14,7 +13,7 @@ import { AddCapacityDialogComponent } from './add-capacity-dialog/add-capacity-d
     styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-    public cart: Unicorn[] = [];
+    public cart$ = this.cartSelectors.cart$;
 
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
         map(result => result.matches),
@@ -23,12 +22,10 @@ export class NavComponent {
 
     constructor(
         private breakpointObserver: BreakpointObserver,
-        cartService: CartService,
+        private cartSelectors: CartSelectors,
         private dialog: MatDialog,
         private translateService: TranslateService,
-    ) {
-        cartService.cart.subscribe(newCart => (this.cart = newCart));
-    }
+    ) {}
 
     public addCapacity(): void {
         this.dialog.open(AddCapacityDialogComponent);

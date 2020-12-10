@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
 import { Unicorn } from '../../../shared/models/unicorn.model';
-import { CartService } from '../../../shared/services/cart.service';
+import { CartDispatchers } from '../../../store/services/cart.dispatchers';
+import { CartSelectors } from '../../../store/services/cart.selectors';
 import { EditUnicornDialogComponent } from './edit-unicorn-dialog/edit-unicorn-dialog.component';
 
 @Component({
@@ -16,9 +18,13 @@ export class UnicornCardComponent implements OnInit, OnChanges {
     @Output() private updated = new EventEmitter<Unicorn>();
 
     public age = 0;
-    public isInCart = false;
+    public isInCart$: Observable<boolean> | undefined;
 
-    constructor(private dialog: MatDialog, private cartService: CartService) {
+    constructor(
+        private dialog: MatDialog,
+        private cartDispatchers: CartDispatchers,
+        private cartSelectors: CartSelectors,
+    ) {
         // Step 1 les Inputs ne sont pas renseignés ici
         console.log(this.unicorn);
     }
@@ -31,7 +37,10 @@ export class UnicornCardComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         // Step 3 avec mes Inputs de renseignés aussi
-        console.log(this.unicorn);
+        if (this.unicorn) {
+            debugger;
+            this.isInCart$ = this.cartSelectors.isInCart$(this.unicorn);
+        }
     }
 
     public deleteUnicorn(): void {
@@ -58,19 +67,22 @@ export class UnicornCardComponent implements OnInit, OnChanges {
             });
     }
 
-    public addToCart(): void {
-        if (this.unicorn) {
-            if (this.cartService.isInCart(this.unicorn)) {
-                this.cartService.removeFromCart(this.unicorn);
-            } else {
-                this.cartService.addToCart(this.unicorn);
+    public toggleToCart(): void {
+        debugger;
+        this.isInCart$?.pipe(first()).subscribe(isInCart => {
+            if (this.unicorn) {
+                if (isInCart) {
+                    this.cartDispatchers.removeUnicornFromCart(this.unicorn);
+                } else {
+                    this.cartDispatchers.addUnicornToCart(this.unicorn);
+                }
             }
-            this.isInCart = !this.isInCart;
-        }
+        });
     }
 
+    // BAD !!!!
     public isPair(age: number): boolean {
-        console.count('isPair');
+        // console.count('isPair');
         return age % 2 === 0;
     }
 }

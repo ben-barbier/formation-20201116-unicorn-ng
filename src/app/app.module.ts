@@ -3,11 +3,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavModule } from './shared/components/nav/nav.module';
+import { AppStoreModule } from './store/app-store.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -17,6 +20,12 @@ import { NavModule } from './shared/components/nav/nav.module';
         HttpClientModule,
         BrowserAnimationsModule,
         NavModule,
+        AppStoreModule,
+        StoreModule.forRoot({}),
+        // EffectsModule,
+        StoreDevtoolsModule.instrument({
+            maxAge: 10,
+        }),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

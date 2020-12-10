@@ -10,6 +10,8 @@ import { UnicornsService } from '../../shared/services/unicorns.service';
 export class UnicornListComponent {
     public unicorns: Unicorn[] = [];
 
+    trackByUnicornId = (index: number, unicorn: Unicorn): number => unicorn.id;
+
     constructor(private unicornsService: UnicornsService) {
         this.loadUnicorns();
     }
